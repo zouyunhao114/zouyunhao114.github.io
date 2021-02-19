@@ -257,22 +257,6 @@
     </span>
 
   
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan: </span>
-    
-    
-      <a title="changyan" href="/2021/02/19/Introduction/#SOHUCS" itemprop="discussionUrl">
-        <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2021/02/19/Introduction/" itemprop="commentCount"></span>
-      </a>
-    
-  </span>
-  
-  
 </div>
 
         </div>
@@ -311,7 +295,7 @@
 
 
 
-    <div class="comments" id="SOHUCS"></div>
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81Mjc5MC8yOTI2Nw=="></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -372,17 +356,21 @@
 
 
 
-  <script>
-  NexT.utils.loadComments('#SOHUCS', () => {
-    NexT.utils.getScript('https://changyan.sohu.com/upload/changyan.js', () => {
-      window.changyan.api.config({
-        appid: 'cyvjEeSyB',
-        conf : 'f1cfc0e8313f9e2dd8ae9ea50299ec66'
-      });
-    });
-  });
-  </script>
-  <script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+<script>
+NexT.utils.loadComments('#lv-container', () => {
+  window.livereOptions = {
+    refer: "2021/02/19/Introduction/"
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 </body>
 </html>
