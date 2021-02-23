@@ -2,14 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://zouyunhao46.me/2021/02/19/text/</loc>
+    <loc>http://zouyunhao46.me/about/index.html</loc>
     
-    <lastmod>2021-02-19</lastmod>
+    <lastmod>2021-02-23</lastmod>
     
   </url>
   
   <url>
     <loc>http://zouyunhao46.me/2021/02/19/Introduction/</loc>
+    
+    <lastmod>2021-02-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zouyunhao46.me/categories/index.html</loc>
+    
+    <lastmod>2021-02-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zouyunhao46.me/2021/02/19/text/</loc>
     
     <lastmod>2021-02-19</lastmod>
     
@@ -25,5 +39,12 @@
 
   
 
+  
+  <url>
+    <loc>http://zouyunhao46.me/categories/quant/</loc>
+    <lastmod>2021-02-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>
