@@ -6,22 +6,13 @@
     <content><![CDATA[<p>这是我的第一篇博客，我会简单的陈述我为什么要建立这个博客和未来的规划。如果你想了解我，可以移步屏幕上方，或者直接点击<a href="http://www.zouyunhao46.me/about/">这里</a>即可，这样也许会使你更好的理解接下来的内容。</p>
 <a id="more"></a>
 
-<h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p>其实缘由还是很简单的，以前在网上搜索技术资料时，经常会阅读其他博主及大神的博客，我也萌生过建立博客的想法，无奈想到自己学术，技术水平，时间有限，所以一直只是个想法而已。这个学期是我研究生的最后一学期，前几学期以及把毕业所需要的学分全部修完，论文的数据分析部分也得到了教授的肯定，所以时间，精力这个条件已经满足了。并且，在搜索资料时，恰巧打开了<a href="https://manyacan.com/">曼亚灿的个人网站</a>, 根据他发表的文章得知同样是非科班出身的他，能做出这么精致的网站，顿时心生敬意，因此我也决定尝试一下！（网站左侧sidebar里有他的网站链接，感兴趣的朋友可以去拜访）</p>
+<h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p><font size=3>其实缘由还是很简单的，以前在网上搜索技术资料时，经常会阅读其他博主及大神的博客，我也萌生过建立博客的想法，无奈想到自己学术、技术水平、时间精力等条件受限，所以一直只是个想法而已。这个学期是我研究生的最后一学期，前几学期以及把毕业所需要的学分全部修完，论文的数据分析部分也得到了教授的肯定，所以时间、精力这个条件已经满足了。并且，在搜索资料时，恰巧打开了<a href="https://manyacan.com/">曼亚灿的个人网站</a>, 根据他发表的文章得知同样是非科班出身的他，能做出这么精致的网站，顿时心生敬意，因此我也决定尝试一下！（网站左侧sidebar里有他的网站链接，感兴趣的朋友可以去拜访）</font></p>
 <hr>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>正如之前提到的，由于我的学术，技术水平有限，需要学习的东西还有很多。所以，建立此网站的目的有以下三点， 并且始终贯彻一个中心：<font color=red><strong>分享知识，一起学习</strong></font>。</p>
-<ol>
-<li>我将在我的学习过程中整理的技术知识或者有价值的知识记录下来，方便大家和我查阅，学习，交流。</li>
-<li>如有好的文章会转载并标明出处。</li>
-<li>满足自己的兴趣，勉励自己。</li>
-</ol>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><font size=3>建立此网站的目的有以下三点， 并且始终贯彻一个中心：<font color=red><strong>分享知识，一起学习</strong></font>。</font></p>
+<p><font size=3>1. 我将在我的学习过程中整理的技术知识或者有价值的知识记录下来，方便大家和我查阅，学习，交流。</font><br><font size=3>2. 如有好的文章会转载并标明出处。</font><br><font size=3>3. 满足自己的兴趣，勉励自己。</font></p>
 <hr>
-<h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p>本网站的内容将会以以下几点为主。我也是在学习的阶段，欢迎大家积极留言讨论～</p>
-<ol>
-<li> python</li>
-<li>数据分析，数据挖掘</li>
-<li>机器学习(Machine Learning)</li>
-<li>统计学</li>
-</ol>
+<h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p><font size=3>本网站的内容将会以以下几点为主。我也是在学习的阶段，欢迎大家积极留言讨论～</font></p>
+<p><font size=3>1. python</font><br><font size=3>2. 数据分析，数据挖掘</font><br><font size=3>3. 机器学习(Machine Learning)</font><br><font size=3>4. 统计学</font></p>
 <hr>
 <p>文章的最后，我们再品味一下python之禅吧～</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> this</span><br><span class="line"></span><br><span class="line">Python之禅 by Tim Peters</span><br><span class="line">优美胜于丑陋</span><br><span class="line">明了胜于晦涩</span><br><span class="line">简洁胜于复杂</span><br><span class="line">复杂胜于凌乱</span><br><span class="line">扁平胜于嵌套</span><br><span class="line">间隔胜于紧凑</span><br><span class="line">可读性很重要</span><br><span class="line">即便假借特例的实用性之名，也不可违背这些规则</span><br><span class="line">不要包容所有错误，除非你确定需要这样做</span><br><span class="line">当存在多种可能，不要尝试去猜测</span><br><span class="line">而是尽量找一种，最好是唯一一种明显的解决方案</span><br><span class="line">虽然这并不容易，因为你不是 Python 之父</span><br><span class="line">做也许好过不做，但不假思索就动手还不如不做</span><br><span class="line">如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然</span><br><span class="line">命名空间是一种绝妙的理念，我们应当多加利用</span><br></pre></td></tr></table></figure>
