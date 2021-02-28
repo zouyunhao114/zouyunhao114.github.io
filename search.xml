@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>如何使用PyCaret-少量代码即可实现ML</title>
+    <url>/2021/02/28/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PyCaret-%E5%B0%91%E9%87%8F%E4%BB%A3%E7%A0%81%E5%8D%B3%E5%8F%AF%E5%AE%9E%E7%8E%B0ML/</url>
+    <content><![CDATA[<p><strong><em>使用最少量的代码来训练，可视化，评估，解释和部署你的模型。</em></strong></p>
+<p>当我们在进行有监督的机器学习时，我们很容易通过观察我们的模型表现结果就停止继续实验。如果你想仅用一行代码来与其他模型进行比较，该怎样做呢？或者，想将数据科学工作中的每一步都简化为几行代码，该如何做？</p>
+<a id="more"></a>
+
+<p>这些功能正是<a href="https://pycaret.org/">PyCaret</a>会帮你实现的。PyCaret是一个**<em>高等级，少代码**</em>的Python库，可以让你用少量代码，更容易的去比较、训练、评估、调整和部署机器学习模型。PyCaret核心在于，它本质上是一个Scikit-learn，Yellowbrick，SHAP，Optuna，Spacy等数据科学库的整合。所以，你也可以用这些库来解决同样的问题，但是如果你不喜欢大量的代码，PyCaret可以为你省上不少时间。</p>
+<p>&lt;font *color*=blue&gt;<strong>在本文，将会为你展示如何快速地、简单地建立一个机器学习项目和为部署一个模型做准备。</strong></font></p>
+<hr>
+<h3 id="安装PyCaret"><a href="#安装PyCaret" class="headerlink" title="安装PyCaret"></a>安装PyCaret</h3><p>PyCaret是一个拥有大量依赖关系的大型库。我建议使用conda为PyCaret创建一个虚拟环境，这样就不会影响到你现有的任何其他的库。要创建和激活conda的虚拟环境，运行以下命令:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create --name pycaret_env python=<span class="number">3.6</span></span><br><span class="line">conda activate pycaret_env</span><br></pre></td></tr></table></figure>
+<p>要安装默认的较小版本的PyCaret，仅有所需的依赖项，运行以下命令:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install pycaret</span><br></pre></td></tr></table></figure>
+<p>要安装完整版本的PyCaret, 运行以下命令:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install pycaret[full]</span><br></pre></td></tr></table></figure>
+<p>安装完成后，停止虚拟环境，然后运行以下命令将其添加到Jupyter中：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br><span class="line">python -m ipykernel install --user --name pycaret_env --display-name <span class="string">&quot;pycaret_env&quot;</span></span><br></pre></td></tr></table></figure>
+<p>那么现在，当在你的浏览器中运行Jupyter Notebook的时候，你就可以把环境更换到你刚刚创建的环境。</p>
+<p><img src="https://miro.medium.com/max/4800/1*w1jnrU7FannK6JKx7k7KXA.png" alt="avatar"></p>
+<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><p>你可以在[Github](<a href="https://github.com/AmolMavuduru/PyCaretTutorial">AmolMavuduru/PyCaretTutorial: A quick tutorial on how to use PyCaret. (github.com)</a>)上找到本文的全部代码，在下面的代码中，为了处理数据，导入了Numpy和Pandas包:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><p>在这里使用了Kaggle提供的[California Housing Prices Dataset](<a href="https://www.kaggle.com/camnugent/california-housing-prices">California Housing Prices | Kaggle</a>):</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">housing_data = pd.read_csv(<span class="string">&#x27;./data/housing.csv&#x27;</span>)</span><br><span class="line">housing_data.head(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*WFGvXxkjzzvoZu8sEgOe-A.png" alt="avatar"></p>
+<p>上面的输出让我们大致了解了数据，数据包含的大多是数字特征，每个房子都有一个分类特征。我们试图预测的目标列是<strong>median_house_value</strong>列。整个数据集总共包含20640个观测结果。</p>
+<h3 id="初始化实验"><a href="#初始化实验" class="headerlink" title="初始化实验"></a>初始化实验</h3><p>现在我们有了数据，我们将初始化一个PyCaret实验，处理数据，并且记录每一个训练这个数据集的模型。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pycaret.regression <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">reg_experiment = setup(housing_data,</span><br><span class="line">                      taget = <span class="string">&#x27;median_house_value&#x27;</span>,</span><br><span class="line">                      session_id = <span class="number">123</span>,</span><br><span class="line">                      log_experiment = <span class="literal">True</span>,</span><br><span class="line">                      experiment_name = <span class="string">&#x27;ca_housing&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>如下面的GIF所示，运行上面的代码会预处理数据，然后生成具有实验选项的数据框架。</p>
+<p><img src="https://miro.medium.com/max/1400/1*0BSHon0sw8hujHVImwRGQg.gif" alt="avatar"></p>
+<h3 id="比较基线模型"><a href="#比较基线模型" class="headerlink" title="比较基线模型"></a>比较基线模型</h3><p>我们可以同时比较不同的基线模型，利用<strong>compare_models</strong>以找到最佳的K折交叉验证性能的模型。出于演示目的，下面的示例中排除了XGBoost。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">best_model = compare_models(exclue = [<span class="string">&#x27;xgboost&#x27;</span>], fold = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*nLZep3uBw69YjDbVnyAM3w.png" alt="avatar"></p>
+<p>该函数输出了一个数据帧，显示了每个模型的性能统计数据，并突出显示最佳模型的指标，在此示例中，最佳模型是Catboost Regressor。</p>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><p>我们还可以与PyCaret一起在单行代码中训练模型。create_model函数只需要一个字符串参数，即你想要训练的模型。你可以在[PyCaret文档](<a href="https://pycaret.readthedocs.io/en/latest/api/regression.html#pycaret.regression.create_model">Regression — pycaret 2.2.0 documentation</a>)上找到模型对应的字符串。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">catboost = create_model(<span class="string">&#x27;catboost&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*kieo88y3ZSi7Z3GrqtvPuQ.png" alt="avatar"></p>
+<p>create_model函数生成了数据帧，含有CatBoost模型的交叉验证指标。</p>
+<h3 id="超参数调优"><a href="#超参数调优" class="headerlink" title="超参数调优"></a>超参数调优</h3><p>现在，我们有一个训练好的模型，我们可以进一步优化超参数。只需一行代码，我们就可以调整此模型的超参数，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tuned_catboost = tune_model(catboost, n_iter = <span class="number">50</span>, optimize = <span class="string">&#x27;MAE&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*ehjMVjiwuWfpteZfGcL1sw.png" alt="avatar"></p>
+<p>在这种情况下，最重要的结果，即平均指标，用黄色高亮显示。</p>
+<h3 id="可视化模型的性能"><a href="#可视化模型的性能" class="headerlink" title="可视化模型的性能"></a>可视化模型的性能</h3><p>为了可视化模型的性能，我们可以用PyCaret创建很多种图表。PyCaret使用另一个高级包[Yellobrick](<a href="https://www.scikit-yb.org/en/latest/">Yellowbrick: Machine Learning Visualization — Yellowbrick v1.3.post1 documentation (scikit-yb.org)</a>)来创建这些图表。</p>
+<h3 id="残差图"><a href="#残差图" class="headerlink" title="残差图"></a>残差图</h3><p>Plot_model函数将会生成回归模型的残差图：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plot_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*yXe9Zn5giDbpXWhqHPcLaQ.png" alt="avatar"></p>
+<h3 id="预测误差"><a href="#预测误差" class="headerlink" title="预测误差"></a>预测误差</h3><p>我们还可以通过实际目标值和预测值来创建预测误差图：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plot_model(tuned_catboost, plot = <span class="string">&#x27;error&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*STuTC5qZ5-usGboz4KlFpA.png" alt="avator"></p>
+<p>这是一个很有用的功能，我们可以看到模型的R²系数。在完美的情况下(R² = 1)，预测值与实际目标值完全匹配，此图将只包含沿虚线标识线的点。</p>
+<h3 id="功能重要性"><a href="#功能重要性" class="headerlink" title="功能重要性"></a>功能重要性</h3><p>我们还可以可视化模型的功能重要性，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plot_model(tuned_catboost, plot = <span class="string">&#x27;feature&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*MwHjfQcjX-_sAy1aB86P2w.png" alt="avator"></p>
+<p>根据上面的示例，我们可以看到，<strong>median_icome</strong>是预测房价时最重要的参数。由于此参数对应于房屋建造区域的收入中位数，因此此评估非常有意义。在高收入地区建造的房屋可能比低收入地区建造的房屋更贵。</p>
+<h3 id="使用全部图表来评估模型"><a href="#使用全部图表来评估模型" class="headerlink" title="使用全部图表来评估模型"></a>使用全部图表来评估模型</h3><p>我们还可以使用<strong>evalute_model</strong>创建多个图表来评估模型:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">evaluate_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*5MMID_HXYkUvXncCJ68yUw.png" alt="avatar"></p>
+<h3 id="解释模型"><a href="#解释模型" class="headerlink" title="解释模型"></a>解释模型</h3><p><strong>Interpret_model</strong>是一个有用的函数来解释模型的预测。这个函数使用SHAP库来解释模型。详情请移步[这里](<a href="https://towardsdatascience.com/how-to-make-your-machine-learning-models-more-explainable-f20f75928f37">How to make your machine learning models more explainable | by Amol Mavuduru | Towards Data Science</a>)。</p>
+<p>只用一行代码，我们就创建了SHAP beeswarm图表：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">interpret_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*lFbjUcvBq6Arbd4hNtPM9g.png" alt="avatar"></p>
+<p>通过这个图表，我们可以得知，<strong>median_income</strong>对预测房价的影响最大。</p>
+<h3 id="AutoML"><a href="#AutoML" class="headerlink" title="AutoML"></a>AutoML</h3><p>PyCaret还具有运行自动机器学习(AutoML)的功能。我们可以指定损失函数或指标，然后剩下的工作交给库来完成:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">automl_model = automl(optimize = <span class="string">&quot;MAE&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>在此示例中，Auto模型也恰好是CatBoost Regressor，我们可以通过打印出模型来确认：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(automl_model)</span><br></pre></td></tr></table></figure>
+<p>输出如下:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;catboost.core.CatBoostRegressor at <span class="number">0x7f9f05f4aad0</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="生成预测"><a href="#生成预测" class="headerlink" title="生成预测"></a>生成预测</h3><p><strong>predict_model</strong>函数允许我们使用实验数据或者新的看不见的数据生成预测。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pred_holdouts = predict_model(automl_model)</span><br><span class="line">pred_holdouts.head()</span><br></pre></td></tr></table></figure>
+<p>上面的<strong>predict_model</strong>函数会生成用于在交叉验证期间验证模型的数据集的预测。该代码还为我们提供了一个数据框架，其中提供了自动ML模型生成的预测的性能统计数据。</p>
+<p><img src="https://miro.medium.com/max/1400/1*qjUTsOinXEwdga2fmC70HQ.png" alt="avator"></p>
+<p>在上面的输出中，<strong>label</strong>列表示由自动ML模型生成的预测。我们还可以根据下面的代码对整个数据集进行预测。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">new_data = housing_data.copy()</span><br><span class="line">new_data.drop([<span class="string">&#x27;median_house_value&#x27;</span>], axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">predictions = predict_model(automl_model, data=new_data)</span><br><span class="line">predictions.head()</span><br></pre></td></tr></table></figure>
+<h3 id="保存模型"><a href="#保存模型" class="headerlink" title="保存模型"></a>保存模型</h3><p>我们可以用<strong>save_model</strong>函数来保存训练好的模型：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">save_model(automl_model, model_name=<span class="string">&#x27;automl-model&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>我们还可以用<strong>load_model</strong>函数来加载已保存的AutoML模型:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loaded_model = load_model(<span class="string">&#x27;automl-model&#x27;</span>)</span><br><span class="line">print(loaded_model)</span><br></pre></td></tr></table></figure>
+<p>打印出加载的模型可产生以下输出：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Pipeline(memory=<span class="literal">None</span>,</span><br><span class="line">         steps=[(<span class="string">&#x27;dtypes&#x27;</span>,</span><br><span class="line">                 DataTypes_Auto_infer(categorical_features=[],</span><br><span class="line">                                      display_types=<span class="literal">True</span>, features_todrop=[],</span><br><span class="line">                                      id_columns=[], ml_usecase=<span class="string">&#x27;regression&#x27;</span>,</span><br><span class="line">                                      numerical_features=[],</span><br><span class="line">                                      target=<span class="string">&#x27;median_house_value&#x27;</span>,</span><br><span class="line">                                      time_features=[])),</span><br><span class="line">                (<span class="string">&#x27;imputer&#x27;</span>,</span><br><span class="line">                 Simple_Imputer(categorical_strategy=<span class="string">&#x27;not_available&#x27;</span>,</span><br><span class="line">                                fill_value_categorical=<span class="literal">None</span>,</span><br><span class="line">                                fill_value_numerical=<span class="literal">None</span>,</span><br><span class="line">                                numer...</span><br><span class="line">                (<span class="string">&#x27;cluster_all&#x27;</span>, <span class="string">&#x27;passthrough&#x27;</span>),</span><br><span class="line">                (<span class="string">&#x27;dummy&#x27;</span>, Dummify(target=<span class="string">&#x27;median_house_value&#x27;</span>)),</span><br><span class="line">                (<span class="string">&#x27;fix_perfect&#x27;</span>, Remove_100(target=<span class="string">&#x27;median_house_value&#x27;</span>)),</span><br><span class="line">                (<span class="string">&#x27;clean_names&#x27;</span>, Clean_Colum_Names()),</span><br><span class="line">                (<span class="string">&#x27;feature_select&#x27;</span>, <span class="string">&#x27;passthrough&#x27;</span>), (<span class="string">&#x27;fix_multi&#x27;</span>, <span class="string">&#x27;passthrough&#x27;</span>),</span><br><span class="line">                (<span class="string">&#x27;dfs&#x27;</span>, <span class="string">&#x27;passthrough&#x27;</span>), (<span class="string">&#x27;pca&#x27;</span>, <span class="string">&#x27;passthrough&#x27;</span>),</span><br><span class="line">                [<span class="string">&#x27;trained_model&#x27;</span>,</span><br><span class="line">                 &lt;catboost.core.CatBoostRegressor <span class="built_in">object</span> at <span class="number">0x7fb750a0aad0</span>&gt;]],</span><br><span class="line">         verbose=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>正如我们从上面的输出中看到的，PyCaret 不仅保存了经过培训的模型，而且还保存了功能和数据预处理步骤。现在，我们有一个准备就绪的机器学习模型在一个单一的文件。</p>
+<h3 id="模型部署"><a href="#模型部署" class="headerlink" title="模型部署"></a>模型部署</h3><p>现在，我们有一个模型准备就绪，我们也可以将模型部署到云平台，运用<strong>deploy_model</strong>函数部署到AWS。在运行此功能之前，如果您计划将模型部署到 S3 存储中，则必须运行以下命令来配置 AWS 命令行界面：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">aws configure</span><br></pre></td></tr></table></figure>
+<p>运行上述代码将触发一系列信息提示，例如您需要提供的 AWS 秘密访问密钥。此过程完成后，就可以用<strong>deploy_model</strong>函数来部署模型:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">deploy_model(automl_model, model_name = <span class="string">&#x27;automl-model-aws&#x27;</span>, </span><br><span class="line">             platform=<span class="string">&#x27;aws&#x27;</span>,</span><br><span class="line">             authentication = &#123;<span class="string">&#x27;bucket&#x27;</span> : <span class="string">&#x27;pycaret-ca-housing-model&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>在上面的代码中，我将自动ML模型部署到AWS中名为<strong>pycaret-ca-housing-model</strong>的S3存储。从这里，您可以编写一个AWS Lambda函数，该函数将从S3中提取模型并在云中运行。PyCaret还允许您使用<strong>load_model</strong>函数从S3中加载模型。</p>
+<h3 id="MLflow-用户界面"><a href="#MLflow-用户界面" class="headerlink" title="MLflow 用户界面"></a>MLflow 用户界面</h3><p>PyCaret的另一个不错的功能是，它可以使用名为MLfLow的机器学习工具来记录和跟踪您的机器学习实验。运行下面的命令将从本地浏览器启动到MLflow用户界面。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">!mlflow ui</span><br></pre></td></tr></table></figure>
+<p><img src="https://miro.medium.com/max/1400/1*1U6xnTucT9pZLjuM0UHEEA.png" alt="avatar"></p>
+<p>在上面的仪表板中，我们可以看到 MLflow 跟踪用于 PyCaret 实验的不同模型的运行情况。您可以查看实验中每次运行的性能指标以及运行时间。</p>
+<h3 id="PyCaret的利与弊"><a href="#PyCaret的利与弊" class="headerlink" title="PyCaret的利与弊"></a>PyCaret的利与弊</h3><p>虽然PyCaret是一个很棒的工具，但它也有利弊。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>代码量少</li>
+<li>非常适合简单、标准的任务和通用机器学习</li>
+<li>为回归、分类、自然语言处理(NLP)、聚类、异常检测和关联规则挖掘提供支持</li>
+<li>便于模型创建和保存复杂的转换通道</li>
+<li>可轻松的实现可视化</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>到目前为止，PyCaret并不适合文本分类，仅限于主题建模算法</li>
+<li>PyCaret 不适合深度学习，不使用Keras or PyTorch models</li>
+<li>您无法执行更复杂的机器学习任务，例如使用 PyCaret 执行图像分类和文本生成（截止2.2.0版本）</li>
+<li>通过使用 PyCaret，你会牺牲一定程度的对模型的控制，以获得简单和高级代码。</li>
+</ul>
+<h3 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h3><ol>
+<li>M. Ali, <a href="https://pycaret.org/about/">PyCaret: An open-source, low-code machine learning library in Python</a>, (2020), PyCaret.org.</li>
+<li>S. M. Lundberg, S. Lee, <a href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">A Unified Approach to Interpreting Model Predictions</a>, (2017), Advances in Neural Information Processing Systems 30 (NIPS 2017).</li>
+<li>[How to use PyCaret — the library for low-code ML](<a href="https://towardsdatascience.com/how-to-use-pycaret-the-library-for-lazy-data-scientists-91343f960bd2">How to use PyCaret  - the library for easy ML | Towards Data Science</a>)</li>
+</ol>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>建立博客的缘由，目的以及规划</title>
     <url>/2021/02/23/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BC%98%E7%94%B1%EF%BC%8C%E7%9B%AE%E7%9A%84%E4%BB%A5%E5%8F%8A%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p>这是我的第一篇博客，我会简单的陈述我为什么要建立这个博客和未来的规划。如果你想了解我，可以移步屏幕上方，或者直接点击<a href="http://www.zouyunhao46.me/about/">这里</a>即可，这样也许会使你更好的理解接下来的内容。</p>
