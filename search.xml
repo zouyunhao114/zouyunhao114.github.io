@@ -20,9 +20,9 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br><span class="line">python -m ipykernel install --user --name pycaret_env --display-name <span class="string">&quot;pycaret_env&quot;</span></span><br></pre></td></tr></table></figure>
 <p>那么现在，当在你的浏览器中运行Jupyter Notebook的时候，你就可以把环境更换到你刚刚创建的环境。</p>
 <p><img src="https://miro.medium.com/max/4800/1*w1jnrU7FannK6JKx7k7KXA.png" alt="avatar"></p>
-<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><p>你可以在[Github](<a href="https://github.com/AmolMavuduru/PyCaretTutorial">AmolMavuduru/PyCaretTutorial: A quick tutorial on how to use PyCaret. (github.com)</a>)上找到本文的全部代码，在下面的代码中，为了处理数据，导入了Numpy和Pandas包:</p>
+<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><p>你可以在<a href="https://github.com/AmolMavuduru/PyCaretTutorial">Github</a>上找到本文的全部代码，在下面的代码中，为了处理数据，导入了Numpy和Pandas包:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><p>在这里使用了Kaggle提供的[California Housing Prices Dataset](<a href="https://www.kaggle.com/camnugent/california-housing-prices">California Housing Prices | Kaggle</a>):</p>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><p>在这里使用了Kaggle提供的<a href="https://www.kaggle.com/camnugent/california-housing-prices">California Housing Prices Dataset</a>:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">housing_data = pd.read_csv(<span class="string">&#x27;./data/housing.csv&#x27;</span>)</span><br><span class="line">housing_data.head(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*WFGvXxkjzzvoZu8sEgOe-A.png" alt="avatar"></p>
 <p>上面的输出让我们大致了解了数据，数据包含的大多是数字特征，每个房子都有一个分类特征。我们试图预测的目标列是<strong>median_house_value</strong>列。整个数据集总共包含20640个观测结果。</p>
@@ -34,7 +34,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">best_model = compare_models(exclue = [<span class="string">&#x27;xgboost&#x27;</span>], fold = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*nLZep3uBw69YjDbVnyAM3w.png" alt="avatar"></p>
 <p>该函数输出了一个数据帧，显示了每个模型的性能统计数据，并突出显示最佳模型的指标，在此示例中，最佳模型是Catboost Regressor。</p>
-<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><p>我们还可以与PyCaret一起在单行代码中训练模型。create_model函数只需要一个字符串参数，即你想要训练的模型。你可以在[PyCaret文档](<a href="https://pycaret.readthedocs.io/en/latest/api/regression.html#pycaret.regression.create_model">Regression — pycaret 2.2.0 documentation</a>)上找到模型对应的字符串。</p>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><p>我们还可以与PyCaret一起在单行代码中训练模型。create_model函数只需要一个字符串参数，即你想要训练的模型。你可以在<a href="https://pycaret.readthedocs.io/en/latest/api/regression.html#pycaret.regression.create_model">PyCaret文档</a>上找到模型对应的字符串。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">catboost = create_model(<span class="string">&#x27;catboost&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*kieo88y3ZSi7Z3GrqtvPuQ.png" alt="avatar"></p>
 <p>create_model函数生成了数据帧，含有CatBoost模型的交叉验证指标。</p>
@@ -42,7 +42,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tuned_catboost = tune_model(catboost, n_iter = <span class="number">50</span>, optimize = <span class="string">&#x27;MAE&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*ehjMVjiwuWfpteZfGcL1sw.png" alt="avatar"></p>
 <p>在这种情况下，最重要的结果，即平均指标，用黄色高亮显示。</p>
-<h3 id="可视化模型的性能"><a href="#可视化模型的性能" class="headerlink" title="可视化模型的性能"></a>可视化模型的性能</h3><p>为了可视化模型的性能，我们可以用PyCaret创建很多种图表。PyCaret使用另一个高级包[Yellobrick](<a href="https://www.scikit-yb.org/en/latest/">Yellowbrick: Machine Learning Visualization — Yellowbrick v1.3.post1 documentation (scikit-yb.org)</a>)来创建这些图表。</p>
+<h3 id="可视化模型的性能"><a href="#可视化模型的性能" class="headerlink" title="可视化模型的性能"></a>可视化模型的性能</h3><p>为了可视化模型的性能，我们可以用PyCaret创建很多种图表。PyCaret使用另一个高级包<a href="https://www.scikit-yb.org/en/latest/">Yellobrick</a>来创建这些图表。</p>
 <h3 id="残差图"><a href="#残差图" class="headerlink" title="残差图"></a>残差图</h3><p>Plot_model函数将会生成回归模型的残差图：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plot_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*yXe9Zn5giDbpXWhqHPcLaQ.png" alt="avatar"></p>
@@ -57,7 +57,7 @@
 <h3 id="使用全部图表来评估模型"><a href="#使用全部图表来评估模型" class="headerlink" title="使用全部图表来评估模型"></a>使用全部图表来评估模型</h3><p>我们还可以使用<strong>evalute_model</strong>创建多个图表来评估模型:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">evaluate_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*5MMID_HXYkUvXncCJ68yUw.png" alt="avatar"></p>
-<h3 id="解释模型"><a href="#解释模型" class="headerlink" title="解释模型"></a>解释模型</h3><p><strong>Interpret_model</strong>是一个有用的函数来解释模型的预测。这个函数使用SHAP库来解释模型。详情请移步[这里](<a href="https://towardsdatascience.com/how-to-make-your-machine-learning-models-more-explainable-f20f75928f37">How to make your machine learning models more explainable | by Amol Mavuduru | Towards Data Science</a>)。</p>
+<h3 id="解释模型"><a href="#解释模型" class="headerlink" title="解释模型"></a>解释模型</h3><p><strong>Interpret_model</strong>是一个有用的函数来解释模型的预测。这个函数使用SHAP库来解释模型。详情请移步<a href="https://towardsdatascience.com/how-to-make-your-machine-learning-models-more-explainable-f20f75928f37">这里</a>。</p>
 <p>只用一行代码，我们就创建了SHAP beeswarm图表：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">interpret_model(tuned_catboost)</span><br></pre></td></tr></table></figure>
 <p><img src="https://miro.medium.com/max/1400/1*lFbjUcvBq6Arbd4hNtPM9g.png" alt="avatar"></p>
