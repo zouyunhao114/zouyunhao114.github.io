@@ -23,20 +23,24 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"zouyunhao46.me","root":"/","images":"/images","scheme":"Mist","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="这是我的第一篇博客，我会简单的陈述我为什么要建立这个博客和未来的规划。如果你想了解我，可以移步屏幕上方，或者直接点击这里即可，这样也许会使你更好的理解接下来的内容。">
+<meta name="description" content="统计学作为数据分析和机器学习的理论基础，所以有必要去学习与了解它。《赤裸裸的统计学》这本书是面向所有人群的，用通俗易懂的例子来让你深入统计学，而不是纠结于复杂枯燥的公式。 这本书是我最近的睡前读物，还未读完，所以在本篇文章整理了第二章和第三章的内容。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="建立博客的缘由，目的以及规划">
-<meta property="og:url" content="http://zouyunhao46.me/2021/02/23/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BC%98%E7%94%B1%EF%BC%8C%E7%9B%AE%E7%9A%84%E4%BB%A5%E5%8F%8A%E8%A7%84%E5%88%92/index.html">
+<meta property="og:title" content="《赤裸裸的统计学》- 第二章与第三章">
+<meta property="og:url" content="http://zouyunhao46.me/2021/03/02/%E3%80%8A%E8%B5%A4%E8%A3%B8%E8%A3%B8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%AD%A6%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%B8%8E%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
 <meta property="og:site_name" content="求知者">
-<meta property="og:description" content="这是我的第一篇博客，我会简单的陈述我为什么要建立这个博客和未来的规划。如果你想了解我，可以移步屏幕上方，或者直接点击这里即可，这样也许会使你更好的理解接下来的内容。">
+<meta property="og:description" content="统计学作为数据分析和机器学习的理论基础，所以有必要去学习与了解它。《赤裸裸的统计学》这本书是面向所有人群的，用通俗易懂的例子来让你深入统计学，而不是纠结于复杂枯燥的公式。 这本书是我最近的睡前读物，还未读完，所以在本篇文章整理了第二章和第三章的内容。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-23T14:20:50.000Z">
-<meta property="article:modified_time" content="2021-02-24T10:52:11.375Z">
+<meta property="og:image" content="https://img9.doubanio.com/view/subject/s/public/s29319631.jpg">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/7b165a48481efe07c6c6430c8d2e86f8e723da9f">
+<meta property="og:image" content="https://bkimg.cdn.bcebos.com/formula/17152aee51c1f16215a39f09f212c982.svg">
+<meta property="article:published_time" content="2021-03-02T08:56:55.000Z">
+<meta property="article:modified_time" content="2021-03-02T10:39:43.736Z">
 <meta property="article:author" content="ZOU YUNHAO">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img9.doubanio.com/view/subject/s/public/s29319631.jpg">
 
 
-<link rel="canonical" href="http://zouyunhao46.me/2021/02/23/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BC%98%E7%94%B1%EF%BC%8C%E7%9B%AE%E7%9A%84%E4%BB%A5%E5%8F%8A%E8%A7%84%E5%88%92/">
+<link rel="canonical" href="http://zouyunhao46.me/2021/03/02/%E3%80%8A%E8%B5%A4%E8%A3%B8%E8%A3%B8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%AD%A6%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%B8%8E%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
 
 <script class="page-configurations">
@@ -48,7 +52,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>建立博客的缘由，目的以及规划 | 求知者</title>
+<title>《赤裸裸的统计学》- 第二章与第三章 | 求知者</title>
   
 
 
@@ -158,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%98%E7%94%B1"><span class="nav-number">1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">规划</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8F%8F%E8%BF%B0%E7%BB%9F%E8%AE%A1%E5%AD%A6"><span class="nav-number">1.</span> <span class="nav-text">第二章 描述统计学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%95%B0%EF%BC%8C%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">平均数，中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">1.2.</span> <span class="nav-text">标准差和方差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%9F%E8%AE%A1%E6%95%B0%E5%AD%97%E4%BC%9A%E8%AF%B4%E8%B0%8E"><span class="nav-number">2.</span> <span class="nav-text">第三章 统计数字会说谎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E4%B8%8E%E5%87%86%E7%A1%AE"><span class="nav-number">2.1.</span> <span class="nav-text">精确与准确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%95%B0%E4%B8%8E%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">平均数与中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,7 +245,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zouyunhao46.me/2021/02/23/%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BC%98%E7%94%B1%EF%BC%8C%E7%9B%AE%E7%9A%84%E4%BB%A5%E5%8F%8A%E8%A7%84%E5%88%92/">
+    <link itemprop="mainEntityOfPage" href="http://zouyunhao46.me/2021/03/02/%E3%80%8A%E8%B5%A4%E8%A3%B8%E8%A3%B8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%AD%A6%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%B8%8E%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -254,7 +258,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          建立博客的缘由，目的以及规划
+          《赤裸裸的统计学》- 第二章与第三章
         </h1>
 
         <div class="post-meta-container">
@@ -264,16 +268,19 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-02-23 23:20:50" itemprop="dateCreated datePublished" datetime="2021-02-23T23:20:50+09:00">2021-02-23</time>
+      <time title="创建时间：2021-03-02 17:56:55 / 修改时间：19:39:43" itemprop="dateCreated datePublished" datetime="2021-03-02T17:56:55+09:00">2021-03-02</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-02-24 19:52:11" itemprop="dateModified" datetime="2021-02-24T19:52:11+09:00">2021-02-24</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
       </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">统计学</span></a>
+        </span>
+    </span>
 
   
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -292,22 +299,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>这是我的第一篇博客，我会简单的陈述我为什么要建立这个博客和未来的规划。如果你想了解我，可以移步屏幕上方，或者直接点击<a target="_blank" rel="noopener" href="http://www.zouyunhao46.me/about/">这里</a>即可，这样也许会使你更好的理解接下来的内容。</p>
+        <p><strong>统计学作为数据分析和机器学习的理论基础，所以有必要去学习与了解它。《赤裸裸的统计学》这本书是面向所有人群的，用通俗易懂的例子来让你深入统计学，而不是纠结于复杂枯燥的公式。</strong></p>
+<p>这本书是我最近的睡前读物，还未读完，所以在本篇文章整理了第二章和第三章的内容。</p>
 <a id="more"></a>
-
-<h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p><font size=3>其实缘由还是很简单的，以前在网上搜索技术资料时，经常会阅读其他博主及大神的博客，我也萌生过建立博客的想法，无奈想到自己学术、技术水平、时间精力等条件受限，所以一直只是个想法而已。这个学期是我研究生的最后一学期，前几学期以及把毕业所需要的学分全部修完，论文的数据分析部分也得到了教授的肯定，所以时间、精力等条件已基本满足。并且，在搜索资料时，恰巧打开了<a target="_blank" rel="noopener" href="https://manyacan.com/">曼亚灿的个人网站</a>, 根据他发表的文章得知同样是非科班出身的他，能做出这么精致的网站，顿时心生敬意，因此我也决定尝试一下！（网站左侧sidebar里有他的网站链接，感兴趣的朋友可以去拜访）</font></p>
+<p> <img src="https://img9.doubanio.com/view/subject/s/public/s29319631.jpg" alt="avatar"></p>
+<h2 id="第二章-描述统计学"><a href="#第二章-描述统计学" class="headerlink" title="第二章 描述统计学"></a>第二章 描述统计学</h2><ul>
+<li>数据越多，事实越模糊。因此，我们需要简化，将一系列复杂的数据序列减少到几个能够起到描述作用的数字。<strong>这些描述性数据为我们提供了一个针对某一现象的可操作、有意义的概括。</strong></li>
+<li>但是，任何一种简化都会面临被滥用的危险。描述性数据就像在线交友网站上的档案：<strong>虽然每一条都是准确的，但同时也相当具有误导性。</strong></li>
+</ul>
 <hr>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><font size=3>建立此网站的目的有以下三点， 并且始终贯彻一个中心：<font color=red><strong>分享知识，一起学习</strong></font>。</font></p>
-<p><font size=3>1. 我将在我的学习过程中整理的技术知识或者有价值的知识记录下来，方便大家和我查阅，学习，交流。</font><br><font size=3>2. 如有好的文章会转载并标明出处。</font><br><font size=3>3. 满足自己的兴趣，勉励自己。</font></p>
+<h3 id="平均数，中位数"><a href="#平均数，中位数" class="headerlink" title="平均数，中位数"></a>平均数，中位数</h3><ol>
+<li>描述任务的第一步通常是估量某套数据的“<strong>中间位置</strong>”，也就是统计科学家所说的“<strong>集中趋势</strong>”。对于数据分布的“<strong>中间位置</strong>”，最基本的估量方法就是求<strong>平均数</strong>。</li>
+<li>但是，所谓的<strong>平均数</strong>，<strong>平均值</strong>在这里是有一些问题的，即它们容易受到远离中心区域的”<strong>异常值</strong>“的干扰而出现失真。为了解决这个问题，还有一个数据可以用来表示”<strong>中间位置</strong>“，就是<strong>中位数</strong>.</li>
+</ol>
+<p>如果一组数据分布中，没有特别离谱的异常值，那么它们的<strong>中位数</strong>和<strong>平均数</strong>将会是差不多的。无论是<strong>中位数</strong>还是<strong>平均数</strong>，要求出它们并不难，关键在于根据具体情况确定哪一个”<strong>中间位置</strong>“能够更准确的反映问题的实质。</p>
 <hr>
-<h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p><font size=3>本网站的内容将会以以下几点为主。我也是在学习的阶段，欢迎大家积极留言讨论～</font></p>
-<p><font size=3>1. python</font><br><font size=3>2. 数据分析，数据挖掘</font><br><font size=3>3. 机器学习(Machine Learning)</font><br><font size=3>4. 统计学</font></p>
+<h3 id="标准差和方差"><a href="#标准差和方差" class="headerlink" title="标准差和方差"></a>标准差和方差</h3><ol>
+<li><strong>标准差</strong>也是一个能够帮助我们在一大堆杂乱无章的数字中发现真理的统计数值，用它来衡量数据相对于<strong>平均值</strong>的分散程度。<em>根据<strong>标准差</strong>，我们可以知道所观察数值的分散情况。</em><br>标准差这一描述性数据能够让我们用一个独立的数字来表示距离<strong>平均数</strong>的<strong>离散程度</strong>。</li>
+<li><strong>方差</strong>和<strong>标准差</strong>是测量和描述数据分布的离散情况最常用的统计学技巧。</li>
+</ol>
+<p>标准差公式：<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7b165a48481efe07c6c6430c8d2e86f8e723da9f" alt="avatar"></p>
+<p>方差公式： <img src="https://bkimg.cdn.bcebos.com/formula/17152aee51c1f16215a39f09f212c982.svg" alt="avatar"></p>
+<h2 id="第三章-统计数字会说谎"><a href="#第三章-统计数字会说谎" class="headerlink" title="第三章 统计数字会说谎"></a>第三章 统计数字会说谎</h2><p><strong><em>马克・吐温有一句名言是这样说的,“谎言有三种:谎言、该死的谎言,以及统计学”。</em></strong></p>
 <hr>
-<p>文章的最后，我们再品味一下python之禅吧～</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> this</span><br><span class="line"></span><br><span class="line">Python之禅 by Tim Peters</span><br><span class="line">优美胜于丑陋</span><br><span class="line">明了胜于晦涩</span><br><span class="line">简洁胜于复杂</span><br><span class="line">复杂胜于凌乱</span><br><span class="line">扁平胜于嵌套</span><br><span class="line">间隔胜于紧凑</span><br><span class="line">可读性很重要</span><br><span class="line">即便假借特例的实用性之名，也不可违背这些规则</span><br><span class="line">不要包容所有错误，除非你确定需要这样做</span><br><span class="line">当存在多种可能，不要尝试去猜测</span><br><span class="line">而是尽量找一种，最好是唯一一种明显的解决方案</span><br><span class="line">虽然这并不容易，因为你不是 Python 之父</span><br><span class="line">做也许好过不做，但不假思索就动手还不如不做</span><br><span class="line">如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然</span><br><span class="line">命名空间是一种绝妙的理念，我们应当多加利用</span><br></pre></td></tr></table></figure>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/huangbiquan/p/7881913.html">Python之禅及其翻译</a></p>
-<p><em>网站还在建设当中，如有不方便的地方，还请谅解和指正～</em></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2007819&auto=1&height=66"></iframe>
+<h3 id="精确与准确"><a href="#精确与准确" class="headerlink" title="精确与准确"></a>精确与准确</h3><ul>
+<li>如果一个答案是准确的，那么在这个基础上越精确越好，但如果答案一开始就是不准确的，那么再精确也毫无意义。</li>
+<li>合理的分析能调和对立的观点，人的分析是至关重要的。</li>
+</ul>
+<p>例子：</p>
+<p>在2008年金融危机爆发之前,华尔街的许多风险管理模型都非常精确,“风险值”的概念让这些公司得以将其在不同情况下可能损失的资产进行精确量化,数学运算极为复杂和晦涩,得出的结果精确到几乎没有人会怀疑其真实性。但嵌入这些模型中的有关全球市场可能会发生的风险假设其实是错误的,因而精确计算所得出的结论从根本上说就是不准确的。</p>
+<h3 id="平均数与中位数"><a href="#平均数与中位数" class="headerlink" title="平均数与中位数"></a>平均数与中位数</h3><ol>
+<li>平均数对异常值反应较敏感，有时会掩盖真相。例如1+1+1的平均数与1+1+1+100的平均数。</li>
+<li>中位数的决定性特征：不考虑数据距离中间位置有多远或是多近,而是关注它们是高于中间位置还是低于中间位置，这样反而成为它的弱点。</li>
+</ol>
+<p><strong><em>平均数和中位数孰取孰舍,关键就在于这个数据分布里的异常值对事实的真相是起到扭曲的作用,还是其重要的组成部分。</em></strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>统计陷阱与数学能力的关系不大。哪怕是令人叹为观止的精确计算也会混淆视听，有时候，哪怕准确无误地计算出平均数,也无法改变中位数在对真相的描述中更加准确这样一个事实。</p>
 
     </div>
 
@@ -321,11 +347,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/02/28/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PyCaret-%E5%B0%91%E9%87%8F%E4%BB%A3%E7%A0%81%E5%8D%B3%E5%8F%AF%E5%AE%9E%E7%8E%B0ML/" rel="prev" title="如何使用PyCaret-少量代码即可实现ML">
+                  <i class="fa fa-chevron-left"></i> 如何使用PyCaret-少量代码即可实现ML
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/02/28/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PyCaret-%E5%B0%91%E9%87%8F%E4%BB%A3%E7%A0%81%E5%8D%B3%E5%8F%AF%E5%AE%9E%E7%8E%B0ML/" rel="next" title="如何使用PyCaret-少量代码即可实现ML">
-                  如何使用PyCaret-少量代码即可实现ML <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -420,7 +446,7 @@
 <script>
 NexT.utils.loadComments('#lv-container', () => {
   window.livereOptions = {
-    refer: "2021/02/23/建立博客的缘由，目的以及规划/"
+    refer: "2021/03/02/《赤裸裸的统计学》- 第二章与第三章/"
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

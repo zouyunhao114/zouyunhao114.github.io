@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>《赤裸裸的统计学》- 第二章与第三章</title>
+    <url>/2021/03/02/%E3%80%8A%E8%B5%A4%E8%A3%B8%E8%A3%B8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%AD%A6%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%B8%8E%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>统计学作为数据分析和机器学习的理论基础，所以有必要去学习与了解它。《赤裸裸的统计学》这本书是面向所有人群的，用通俗易懂的例子来让你深入统计学，而不是纠结于复杂枯燥的公式。</strong></p>
+<p>这本书是我最近的睡前读物，还未读完，所以在本篇文章整理了第二章和第三章的内容。</p>
+<a id="more"></a>
+<p> <img src="https://img9.doubanio.com/view/subject/s/public/s29319631.jpg" alt="avatar"></p>
+<h2 id="第二章-描述统计学"><a href="#第二章-描述统计学" class="headerlink" title="第二章 描述统计学"></a>第二章 描述统计学</h2><ul>
+<li>数据越多，事实越模糊。因此，我们需要简化，将一系列复杂的数据序列减少到几个能够起到描述作用的数字。<strong>这些描述性数据为我们提供了一个针对某一现象的可操作、有意义的概括。</strong></li>
+<li>但是，任何一种简化都会面临被滥用的危险。描述性数据就像在线交友网站上的档案：<strong>虽然每一条都是准确的，但同时也相当具有误导性。</strong></li>
+</ul>
+<hr>
+<h3 id="平均数，中位数"><a href="#平均数，中位数" class="headerlink" title="平均数，中位数"></a>平均数，中位数</h3><ol>
+<li>描述任务的第一步通常是估量某套数据的“<strong>中间位置</strong>”，也就是统计科学家所说的“<strong>集中趋势</strong>”。对于数据分布的“<strong>中间位置</strong>”，最基本的估量方法就是求<strong>平均数</strong>。</li>
+<li>但是，所谓的<strong>平均数</strong>，<strong>平均值</strong>在这里是有一些问题的，即它们容易受到远离中心区域的”<strong>异常值</strong>“的干扰而出现失真。为了解决这个问题，还有一个数据可以用来表示”<strong>中间位置</strong>“，就是<strong>中位数</strong>.</li>
+</ol>
+<p>如果一组数据分布中，没有特别离谱的异常值，那么它们的<strong>中位数</strong>和<strong>平均数</strong>将会是差不多的。无论是<strong>中位数</strong>还是<strong>平均数</strong>，要求出它们并不难，关键在于根据具体情况确定哪一个”<strong>中间位置</strong>“能够更准确的反映问题的实质。</p>
+<hr>
+<h3 id="标准差和方差"><a href="#标准差和方差" class="headerlink" title="标准差和方差"></a>标准差和方差</h3><ol>
+<li><strong>标准差</strong>也是一个能够帮助我们在一大堆杂乱无章的数字中发现真理的统计数值，用它来衡量数据相对于<strong>平均值</strong>的分散程度。<em>根据<strong>标准差</strong>，我们可以知道所观察数值的分散情况。</em><br>标准差这一描述性数据能够让我们用一个独立的数字来表示距离<strong>平均数</strong>的<strong>离散程度</strong>。</li>
+<li><strong>方差</strong>和<strong>标准差</strong>是测量和描述数据分布的离散情况最常用的统计学技巧。</li>
+</ol>
+<p>标准差公式：<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7b165a48481efe07c6c6430c8d2e86f8e723da9f" alt="avatar"></p>
+<p>方差公式： <img src="https://bkimg.cdn.bcebos.com/formula/17152aee51c1f16215a39f09f212c982.svg" alt="avatar"></p>
+<h2 id="第三章-统计数字会说谎"><a href="#第三章-统计数字会说谎" class="headerlink" title="第三章 统计数字会说谎"></a>第三章 统计数字会说谎</h2><p><strong><em>马克・吐温有一句名言是这样说的,“谎言有三种:谎言、该死的谎言,以及统计学”。</em></strong></p>
+<hr>
+<h3 id="精确与准确"><a href="#精确与准确" class="headerlink" title="精确与准确"></a>精确与准确</h3><ul>
+<li>如果一个答案是准确的，那么在这个基础上越精确越好，但如果答案一开始就是不准确的，那么再精确也毫无意义。</li>
+<li>合理的分析能调和对立的观点，人的分析是至关重要的。</li>
+</ul>
+<p>例子：</p>
+<p>在2008年金融危机爆发之前,华尔街的许多风险管理模型都非常精确,“风险值”的概念让这些公司得以将其在不同情况下可能损失的资产进行精确量化,数学运算极为复杂和晦涩,得出的结果精确到几乎没有人会怀疑其真实性。但嵌入这些模型中的有关全球市场可能会发生的风险假设其实是错误的,因而精确计算所得出的结论从根本上说就是不准确的。</p>
+<h3 id="平均数与中位数"><a href="#平均数与中位数" class="headerlink" title="平均数与中位数"></a>平均数与中位数</h3><ol>
+<li>平均数对异常值反应较敏感，有时会掩盖真相。例如1+1+1的平均数与1+1+1+100的平均数。</li>
+<li>中位数的决定性特征：不考虑数据距离中间位置有多远或是多近,而是关注它们是高于中间位置还是低于中间位置，这样反而成为它的弱点。</li>
+</ol>
+<p><strong><em>平均数和中位数孰取孰舍,关键就在于这个数据分布里的异常值对事实的真相是起到扭曲的作用,还是其重要的组成部分。</em></strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>统计陷阱与数学能力的关系不大。哪怕是令人叹为观止的精确计算也会混淆视听，有时候，哪怕准确无误地计算出平均数,也无法改变中位数在对真相的描述中更加准确这样一个事实。</p>
+]]></content>
+      <categories>
+        <category>统计学</category>
+      </categories>
+  </entry>
+  <entry>
     <title>如何使用PyCaret-少量代码即可实现ML</title>
     <url>/2021/02/28/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8PyCaret-%E5%B0%91%E9%87%8F%E4%BB%A3%E7%A0%81%E5%8D%B3%E5%8F%AF%E5%AE%9E%E7%8E%B0ML/</url>
     <content><![CDATA[<p><strong><em>使用最少量的代码来训练，可视化，评估，解释和部署你的模型。</em></strong></p>
